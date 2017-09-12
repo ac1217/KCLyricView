@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		88F7E3271F67754C006FC03A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E3261F67754C006FC03A /* main.m */; };
+		88F7E32A1F67754C006FC03A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E3291F67754C006FC03A /* AppDelegate.m */; };
+		88F7E32D1F67754C006FC03A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E32C1F67754C006FC03A /* ViewController.m */; };
+		88F7E3301F67754C006FC03A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F7E32E1F67754C006FC03A /* Main.storyboard */; };
+		88F7E3321F67754C006FC03A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88F7E3311F67754C006FC03A /* Assets.xcassets */; };
+		88F7E3351F67754C006FC03A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F7E3331F67754C006FC03A /* LaunchScreen.storyboard */; };
+		88F7E3401F67754D006FC03A /* KCLyricViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E33F1F67754D006FC03A /* KCLyricViewTests.m */; };
+		88F7E34B1F67754D006FC03A /* KCLyricViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E34A1F67754D006FC03A /* KCLyricViewUITests.m */; };
+		88F7E35D1F67758A006FC03A /* KCLyricView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E35C1F67758A006FC03A /* KCLyricView.m */; };
+		88F7E3601F677597006FC03A /* KCLyricModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E35F1F677597006FC03A /* KCLyricModel.m */; };
+		88F7E3631F677756006FC03A /* KCLyricWordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E3621F677756006FC03A /* KCLyricWordModel.m */; };
+		88F7E3661F677760006FC03A /* KCLyricRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E3651F677760006FC03A /* KCLyricRowModel.m */; };
+		88F7E3681F677AC2006FC03A /* lyric.txt in Resources */ = {isa = PBXBuildFile; fileRef = 88F7E3671F677AC2006FC03A /* lyric.txt */; };
+		88F7E36E1F67C67C006FC03A /* KCLyricViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E36D1F67C67C006FC03A /* KCLyricViewCell.m */; };
+		88F7E3761F67EDD0006FC03A /* KCPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E3711F67EDD0006FC03A /* KCPlayer.m */; };
+		88F7E3771F67EDD0006FC03A /* KCPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E3731F67EDD0006FC03A /* KCPlayerItem.m */; };
+		88F7E3781F67EDD0006FC03A /* KCPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F7E3751F67EDD0006FC03A /* KCPlayerView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		88F7E33C1F67754D006FC03A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88F7E31A1F67754C006FC03A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88F7E3211F67754C006FC03A;
+			remoteInfo = KCLyricView;
+		};
+		88F7E3471F67754D006FC03A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88F7E31A1F67754C006FC03A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88F7E3211F67754C006FC03A;
+			remoteInfo = KCLyricView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		88F7E3221F67754C006FC03A /* KCLyricView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KCLyricView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88F7E3261F67754C006FC03A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		88F7E3281F67754C006FC03A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		88F7E3291F67754C006FC03A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		88F7E32B1F67754C006FC03A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		88F7E32C1F67754C006FC03A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		88F7E32F1F67754C006FC03A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		88F7E3311F67754C006FC03A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		88F7E3341F67754C006FC03A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		88F7E3361F67754C006FC03A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88F7E33B1F67754D006FC03A /* KCLyricViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KCLyricViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88F7E33F1F67754D006FC03A /* KCLyricViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCLyricViewTests.m; sourceTree = "<group>"; };
+		88F7E3411F67754D006FC03A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88F7E3461F67754D006FC03A /* KCLyricViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KCLyricViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88F7E34A1F67754D006FC03A /* KCLyricViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KCLyricViewUITests.m; sourceTree = "<group>"; };
+		88F7E34C1F67754D006FC03A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88F7E35B1F67758A006FC03A /* KCLyricView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCLyricView.h; sourceTree = "<group>"; };
+		88F7E35C1F67758A006FC03A /* KCLyricView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCLyricView.m; sourceTree = "<group>"; };
+		88F7E35E1F677597006FC03A /* KCLyricModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCLyricModel.h; sourceTree = "<group>"; };
+		88F7E35F1F677597006FC03A /* KCLyricModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCLyricModel.m; sourceTree = "<group>"; };
+		88F7E3611F677756006FC03A /* KCLyricWordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCLyricWordModel.h; sourceTree = "<group>"; };
+		88F7E3621F677756006FC03A /* KCLyricWordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCLyricWordModel.m; sourceTree = "<group>"; };
+		88F7E3641F677760006FC03A /* KCLyricRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCLyricRowModel.h; sourceTree = "<group>"; };
+		88F7E3651F677760006FC03A /* KCLyricRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCLyricRowModel.m; sourceTree = "<group>"; };
+		88F7E3671F677AC2006FC03A /* lyric.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lyric.txt; sourceTree = "<group>"; };
+		88F7E36C1F67C67C006FC03A /* KCLyricViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCLyricViewCell.h; sourceTree = "<group>"; };
+		88F7E36D1F67C67C006FC03A /* KCLyricViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCLyricViewCell.m; sourceTree = "<group>"; };
+		88F7E3701F67EDD0006FC03A /* KCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCPlayer.h; sourceTree = "<group>"; };
+		88F7E3711F67EDD0006FC03A /* KCPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCPlayer.m; sourceTree = "<group>"; };
+		88F7E3721F67EDD0006FC03A /* KCPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCPlayerItem.h; sourceTree = "<group>"; };
+		88F7E3731F67EDD0006FC03A /* KCPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCPlayerItem.m; sourceTree = "<group>"; };
+		88F7E3741F67EDD0006FC03A /* KCPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KCPlayerView.h; sourceTree = "<group>"; };
+		88F7E3751F67EDD0006FC03A /* KCPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KCPlayerView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88F7E31F1F67754C006FC03A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F7E3381F67754D006FC03A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F7E3431F67754D006FC03A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		88F7E3191F67754C006FC03A = {
+			isa = PBXGroup;
+			children = (
+				88F7E3241F67754C006FC03A /* KCLyricView */,
+				88F7E33E1F67754D006FC03A /* KCLyricViewTests */,
+				88F7E3491F67754D006FC03A /* KCLyricViewUITests */,
+				88F7E3231F67754C006FC03A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		88F7E3231F67754C006FC03A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88F7E3221F67754C006FC03A /* KCLyricView.app */,
+				88F7E33B1F67754D006FC03A /* KCLyricViewTests.xctest */,
+				88F7E3461F67754D006FC03A /* KCLyricViewUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88F7E3241F67754C006FC03A /* KCLyricView */ = {
+			isa = PBXGroup;
+			children = (
+				88F7E36F1F67EDD0006FC03A /* KCPlayer */,
+				88F7E3581F677579006FC03A /* KCLyricView */,
+				88F7E3281F67754C006FC03A /* AppDelegate.h */,
+				88F7E3291F67754C006FC03A /* AppDelegate.m */,
+				88F7E32B1F67754C006FC03A /* ViewController.h */,
+				88F7E32C1F67754C006FC03A /* ViewController.m */,
+				88F7E32E1F67754C006FC03A /* Main.storyboard */,
+				88F7E3311F67754C006FC03A /* Assets.xcassets */,
+				88F7E3331F67754C006FC03A /* LaunchScreen.storyboard */,
+				88F7E3361F67754C006FC03A /* Info.plist */,
+				88F7E3251F67754C006FC03A /* Supporting Files */,
+			);
+			path = KCLyricView;
+			sourceTree = "<group>";
+		};
+		88F7E3251F67754C006FC03A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88F7E3261F67754C006FC03A /* main.m */,
+				88F7E3671F677AC2006FC03A /* lyric.txt */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88F7E33E1F67754D006FC03A /* KCLyricViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				88F7E33F1F67754D006FC03A /* KCLyricViewTests.m */,
+				88F7E3411F67754D006FC03A /* Info.plist */,
+			);
+			path = KCLyricViewTests;
+			sourceTree = "<group>";
+		};
+		88F7E3491F67754D006FC03A /* KCLyricViewUITests */ = {
+			isa = PBXGroup;
+			children = (
+				88F7E34A1F67754D006FC03A /* KCLyricViewUITests.m */,
+				88F7E34C1F67754D006FC03A /* Info.plist */,
+			);
+			path = KCLyricViewUITests;
+			sourceTree = "<group>";
+		};
+		88F7E3581F677579006FC03A /* KCLyricView */ = {
+			isa = PBXGroup;
+			children = (
+				88F7E3591F677579006FC03A /* Model */,
+				88F7E35A1F677579006FC03A /* View */,
+			);
+			path = KCLyricView;
+			sourceTree = "<group>";
+		};
+		88F7E3591F677579006FC03A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				88F7E35E1F677597006FC03A /* KCLyricModel.h */,
+				88F7E35F1F677597006FC03A /* KCLyricModel.m */,
+				88F7E3611F677756006FC03A /* KCLyricWordModel.h */,
+				88F7E3621F677756006FC03A /* KCLyricWordModel.m */,
+				88F7E3641F677760006FC03A /* KCLyricRowModel.h */,
+				88F7E3651F677760006FC03A /* KCLyricRowModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		88F7E35A1F677579006FC03A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				88F7E35B1F67758A006FC03A /* KCLyricView.h */,
+				88F7E35C1F67758A006FC03A /* KCLyricView.m */,
+				88F7E36C1F67C67C006FC03A /* KCLyricViewCell.h */,
+				88F7E36D1F67C67C006FC03A /* KCLyricViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		88F7E36F1F67EDD0006FC03A /* KCPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				88F7E3701F67EDD0006FC03A /* KCPlayer.h */,
+				88F7E3711F67EDD0006FC03A /* KCPlayer.m */,
+				88F7E3721F67EDD0006FC03A /* KCPlayerItem.h */,
+				88F7E3731F67EDD0006FC03A /* KCPlayerItem.m */,
+				88F7E3741F67EDD0006FC03A /* KCPlayerView.h */,
+				88F7E3751F67EDD0006FC03A /* KCPlayerView.m */,
+			);
+			path = KCPlayer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88F7E3211F67754C006FC03A /* KCLyricView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88F7E34F1F67754D006FC03A /* Build configuration list for PBXNativeTarget "KCLyricView" */;
+			buildPhases = (
+				88F7E31E1F67754C006FC03A /* Sources */,
+				88F7E31F1F67754C006FC03A /* Frameworks */,
+				88F7E3201F67754C006FC03A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KCLyricView;
+			productName = KCLyricView;
+			productReference = 88F7E3221F67754C006FC03A /* KCLyricView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		88F7E33A1F67754D006FC03A /* KCLyricViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88F7E3521F67754D006FC03A /* Build configuration list for PBXNativeTarget "KCLyricViewTests" */;
+			buildPhases = (
+				88F7E3371F67754D006FC03A /* Sources */,
+				88F7E3381F67754D006FC03A /* Frameworks */,
+				88F7E3391F67754D006FC03A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88F7E33D1F67754D006FC03A /* PBXTargetDependency */,
+			);
+			name = KCLyricViewTests;
+			productName = KCLyricViewTests;
+			productReference = 88F7E33B1F67754D006FC03A /* KCLyricViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		88F7E3451F67754D006FC03A /* KCLyricViewUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88F7E3551F67754D006FC03A /* Build configuration list for PBXNativeTarget "KCLyricViewUITests" */;
+			buildPhases = (
+				88F7E3421F67754D006FC03A /* Sources */,
+				88F7E3431F67754D006FC03A /* Frameworks */,
+				88F7E3441F67754D006FC03A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88F7E3481F67754D006FC03A /* PBXTargetDependency */,
+			);
+			name = KCLyricViewUITests;
+			productName = KCLyricViewUITests;
+			productReference = 88F7E3461F67754D006FC03A /* KCLyricViewUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88F7E31A1F67754C006FC03A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = iMac;
+				TargetAttributes = {
+					88F7E3211F67754C006FC03A = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+					88F7E33A1F67754D006FC03A = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 88F7E3211F67754C006FC03A;
+					};
+					88F7E3451F67754D006FC03A = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 88F7E3211F67754C006FC03A;
+					};
+				};
+			};
+			buildConfigurationList = 88F7E31D1F67754C006FC03A /* Build configuration list for PBXProject "KCLyricView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 88F7E3191F67754C006FC03A;
+			productRefGroup = 88F7E3231F67754C006FC03A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88F7E3211F67754C006FC03A /* KCLyricView */,
+				88F7E33A1F67754D006FC03A /* KCLyricViewTests */,
+				88F7E3451F67754D006FC03A /* KCLyricViewUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88F7E3201F67754C006FC03A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F7E3351F67754C006FC03A /* LaunchScreen.storyboard in Resources */,
+				88F7E3321F67754C006FC03A /* Assets.xcassets in Resources */,
+				88F7E3681F677AC2006FC03A /* lyric.txt in Resources */,
+				88F7E3301F67754C006FC03A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F7E3391F67754D006FC03A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F7E3441F67754D006FC03A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88F7E31E1F67754C006FC03A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F7E36E1F67C67C006FC03A /* KCLyricViewCell.m in Sources */,
+				88F7E3661F677760006FC03A /* KCLyricRowModel.m in Sources */,
+				88F7E35D1F67758A006FC03A /* KCLyricView.m in Sources */,
+				88F7E32D1F67754C006FC03A /* ViewController.m in Sources */,
+				88F7E3781F67EDD0006FC03A /* KCPlayerView.m in Sources */,
+				88F7E3761F67EDD0006FC03A /* KCPlayer.m in Sources */,
+				88F7E32A1F67754C006FC03A /* AppDelegate.m in Sources */,
+				88F7E3631F677756006FC03A /* KCLyricWordModel.m in Sources */,
+				88F7E3271F67754C006FC03A /* main.m in Sources */,
+				88F7E3601F677597006FC03A /* KCLyricModel.m in Sources */,
+				88F7E3771F67EDD0006FC03A /* KCPlayerItem.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F7E3371F67754D006FC03A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F7E3401F67754D006FC03A /* KCLyricViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F7E3421F67754D006FC03A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F7E34B1F67754D006FC03A /* KCLyricViewUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88F7E33D1F67754D006FC03A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88F7E3211F67754C006FC03A /* KCLyricView */;
+			targetProxy = 88F7E33C1F67754D006FC03A /* PBXContainerItemProxy */;
+		};
+		88F7E3481F67754D006FC03A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88F7E3211F67754C006FC03A /* KCLyricView */;
+			targetProxy = 88F7E3471F67754D006FC03A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		88F7E32E1F67754C006FC03A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88F7E32F1F67754C006FC03A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		88F7E3331F67754C006FC03A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88F7E3341F67754C006FC03A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		88F7E34D1F67754D006FC03A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88F7E34E1F67754D006FC03A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88F7E3501F67754D006FC03A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KCLyricView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = iMac.KCLyricView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		88F7E3511F67754D006FC03A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KCLyricView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = iMac.KCLyricView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		88F7E3531F67754D006FC03A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KCLyricViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = iMac.KCLyricViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KCLyricView.app/KCLyricView";
+			};
+			name = Debug;
+		};
+		88F7E3541F67754D006FC03A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KCLyricViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = iMac.KCLyricViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KCLyricView.app/KCLyricView";
+			};
+			name = Release;
+		};
+		88F7E3561F67754D006FC03A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KCLyricViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = iMac.KCLyricViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = KCLyricView;
+			};
+			name = Debug;
+		};
+		88F7E3571F67754D006FC03A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KCLyricViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = iMac.KCLyricViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = KCLyricView;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88F7E31D1F67754C006FC03A /* Build configuration list for PBXProject "KCLyricView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F7E34D1F67754D006FC03A /* Debug */,
+				88F7E34E1F67754D006FC03A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88F7E34F1F67754D006FC03A /* Build configuration list for PBXNativeTarget "KCLyricView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F7E3501F67754D006FC03A /* Debug */,
+				88F7E3511F67754D006FC03A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		88F7E3521F67754D006FC03A /* Build configuration list for PBXNativeTarget "KCLyricViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F7E3531F67754D006FC03A /* Debug */,
+				88F7E3541F67754D006FC03A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		88F7E3551F67754D006FC03A /* Build configuration list for PBXNativeTarget "KCLyricViewUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F7E3561F67754D006FC03A /* Debug */,
+				88F7E3571F67754D006FC03A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88F7E31A1F67754C006FC03A /* Project object */;
+}
