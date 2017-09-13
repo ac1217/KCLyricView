@@ -40,8 +40,6 @@
 {
     if (!_normalLabel) {
         _normalLabel = [[UILabel alloc] init];
-        _normalLabel.font = [UIFont systemFontOfSize:14];
-        _normalLabel.textColor = [UIColor blueColor];
         _normalLabel.layer.mask = self.normalMaskLayer;
     }
     return _normalLabel;
@@ -51,8 +49,6 @@
 {
     if (!_highlightedLabel) {
         _highlightedLabel = [[UILabel alloc] init];
-        _highlightedLabel.font = [UIFont systemFontOfSize:14];
-        _highlightedLabel.textColor = [UIColor orangeColor];
         
         _highlightedLabel.layer.mask = self.highlightedMaskLayer;
     }
@@ -63,8 +59,11 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:self.normalLabel];
         [self.contentView addSubview:self.highlightedLabel];
+        
     }
     return self;
 }
@@ -77,41 +76,159 @@
     self.normalLabel.text = rowModel.row;
     self.highlightedLabel.text = rowModel.row;
     
-    [self setupLayout];
-    
-    [self setProgress:0];
-}
-
-- (void)setupLayout
-{
     [self.normalLabel sizeToFit];
     [self.highlightedLabel sizeToFit];
     
-    self.normalLabel.center = CGPointMake(self.contentView.bounds.size.width * 0.5, self.contentView.bounds.size.height * 0.5);
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    switch (_textAlignment) {
+        case NSTextAlignmentCenter:
+            
+            self.normalLabel.center = CGPointMake(self.contentView.bounds.size.width * 0.5, self.contentView.bounds.size.height * 0.5);
+            self.highlightedLabel.center = self.normalLabel.center;
+            break;
+            
+        case NSTextAlignmentLeft:{
+            
+            CGRect normalLabelFrame = self.normalLabel.frame;
+            normalLabelFrame.origin.y = (self.contentView.bounds.size.height - normalLabelFrame.size.height) * 0.5;
+            self.normalLabel.frame = normalLabelFrame;
+            self.highlightedLabel.frame = self.normalLabel.frame;
+            
+        }
+            break;
+            
+        case NSTextAlignmentRight:{
+            
+            CGRect normalLabelFrame = self.normalLabel.frame;
+            normalLabelFrame.origin.y = (self.contentView.bounds.size.height - normalLabelFrame.size.height) * 0.5;
+            normalLabelFrame.origin.x = self.contentView.bounds.size.width - normalLabelFrame.size.width;
+            
+            self.normalLabel.frame = normalLabelFrame;
+            self.highlightedLabel.frame = self.normalLabel.frame;
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    if (self.normalLabel.frame.size.width > self.contentView.frame.size.width) {
+        
+        CGRect normalLabelFrame = self.normalLabel.frame;
+        normalLabelFrame.origin.x = 0;
+        self.normalLabel.frame = normalLabelFrame;
+        self.highlightedLabel.frame = self.normalLabel.frame;
+        
+    }
     
     self.normalMaskLayer.frame = self.normalLabel.bounds;
     
-    self.highlightedLabel.center = self.normalLabel.center;
-//
     self.highlightedMaskLayer.frame = self.highlightedLabel.bounds;
     
 }
 
 
-- (void)setProgress:(CGFloat)progress
+- (void)reset
+{
+    CGRect normalMaskLayerFrame = self.normalLabel.bounds;
+    self.normalMaskLayer.path = [UIBezierPath bezierPathWithRect:normalMaskLayerFrame].CGPath;
+    
+    CGRect highlightedMaskLayerFrame = self.highlightedLabel.bounds;
+    highlightedMaskLayerFrame.size.width = 0;
+    
+    self.highlightedMaskLayer.path = [UIBezierPath bezierPathWithRect:highlightedMaskLayerFrame].CGPath;
+    
+    
+    self.normalLabel.transform = CGAffineTransformIdentity;
+    self.highlightedLabel.transform = CGAffineTransformIdentity;
+   
+    
+}
+
+- (void)setCurrentTime:(NSTimeInterval)currentTime
 {
     
+    NSInteger index = [self searchIndexWithCurrentTime:currentTime];
+    
+//    NSLog(@"%zd", index);
+    if (index < 0) {
+        
+        return;
+    }
+    
+    KCLyricWordModel *wordModel = _rowModel.wordModels[index];
+    
+    CGFloat progress = (currentTime - wordModel.startTime) / wordModel.duration;
+    
+    NSRange range = [_rowModel.row rangeOfString:wordModel.word];
+    
+    NSString *string = [_rowModel.row substringToIndex:range.location];
+    
+    CGFloat width = [string sizeWithAttributes:@{NSFontAttributeName : self.normalLabel.font}].width + [wordModel.word sizeWithAttributes:@{NSFontAttributeName : self.normalLabel.font}].width * progress;
+    
     CGRect normalMaskLayerFrame = self.normalLabel.bounds;
-    normalMaskLayerFrame.origin.x = self.normalLabel.bounds.size.width * progress;
+    normalMaskLayerFrame.origin.x = width;
     normalMaskLayerFrame.size.width = self.normalLabel.bounds.size.width - normalMaskLayerFrame.origin.x;
     
     self.normalMaskLayer.path = [UIBezierPath bezierPathWithRect:normalMaskLayerFrame].CGPath;
     
     CGRect highlightedMaskLayerFrame = self.highlightedLabel.bounds;
-    highlightedMaskLayerFrame.size.width = self.highlightedLabel.bounds.size.width * progress;
+    highlightedMaskLayerFrame.size.width = width;
     
     self.highlightedMaskLayer.path = [UIBezierPath bezierPathWithRect:highlightedMaskLayerFrame].CGPath;
     
+    if (self.normalLabel.frame.size.width > self.contentView.bounds.size.width && width > self.contentView.bounds.size.width * 0.5 && width + self.contentView.bounds.size.width * 0.5 < self.normalLabel.frame.size.width) {
+        
+        CGFloat delta = width - self.contentView.bounds.size.width * 0.5;
+        
+        self.normalLabel.transform = CGAffineTransformMakeTranslation(-delta, 0);
+        self.highlightedLabel.transform = CGAffineTransformMakeTranslation(-delta, 0);
+        
+    }
+    
+}
+
+- (NSInteger)searchIndexWithCurrentTime:(NSTimeInterval)currentTime
+{
+    
+    NSInteger beginIndex = 0;
+    NSInteger endIndex = _rowModel.wordModels.count - 1;
+    
+    if (beginIndex > endIndex)
+    {
+        return -1;
+    }
+    
+    NSInteger middleIndex = -1;
+    while (beginIndex <= endIndex) {
+        
+        middleIndex = (endIndex + beginIndex) * 0.5;
+        
+        KCLyricWordModel *wordModel = _rowModel.wordModels[middleIndex];
+        
+        if (wordModel.startTime <= currentTime && wordModel.endTime >= currentTime) {
+            
+            return middleIndex;
+            
+        }else if (currentTime < wordModel.startTime) {
+            
+            endIndex = middleIndex - 1;
+            
+        }else if (currentTime > wordModel.endTime) {
+            
+            beginIndex = middleIndex + 1;
+            
+        }
+        
+    }
+    
+    return -1;
 }
 
 @end

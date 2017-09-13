@@ -25,6 +25,14 @@
 
 @property (nonatomic,weak) id<KCLyricViewDataSource> dataSource;
 
+@property (nonatomic,strong) UIColor *normalTextColor;
+@property (nonatomic,strong) UIColor *highlightedTextColor;
+@property (nonatomic,strong) UIFont *textFont;
+
+@property (nonatomic,assign) NSTextAlignment textAlignment;
+
+@property (nonatomic,assign) BOOL scrollAnimation;
+
 - (void)reloadData;
 
 @end

@@ -18,6 +18,9 @@
 
 @property (nonatomic,strong) NSIndexPath *currentIndexPath;
 
+
+@property (nonatomic,assign, getter=isDragging) BOOL dragging;
+
 @end
 
 @implementation KCLyricView
@@ -26,6 +29,7 @@
 {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerClass:[KCLyricViewCell class] forCellReuseIdentifier:KCLyricViewCellReuseID];
         _tableView.dataSource = self;
@@ -53,7 +57,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        _scrollAnimation = YES;
         [self addSubview:self.tableView];
+        _textAlignment = NSTextAlignmentCenter;
+        _normalTextColor = [UIColor blueColor];
+        _highlightedTextColor = [UIColor orangeColor];
+        _textFont = [UIFont systemFontOfSize:14];
     }
     return self;
 }
@@ -67,13 +76,14 @@
 
 - (void)setCurrentTime:(NSTimeInterval)currentTime
 {
-    _currentTime = currentTime;
     
-    NSInteger index = [self searchIndex];
+    NSInteger index = [self searchIndexWithCurrentTime:currentTime];
     
     if (index < 0) {
         return;
     }
+    
+    _currentTime = currentTime;
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     
@@ -81,26 +91,51 @@
         
         KCLyricViewCell *cell = [self.tableView cellForRowAtIndexPath:_currentIndexPath];
         
-        [cell setProgress:0];
+        [cell reset];
         
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        if (!self.isDragging) {
+            
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:_scrollAnimation];
+        }
+        
         
     }
     
-    KCLyricRowModel *rowModel = _lyricModel.rowModels[index];
-    
-    CGFloat progress = (currentTime - rowModel.startTime) / rowModel.duration;
-    
     KCLyricViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
-    [cell setProgress:progress];
+    [cell setCurrentTime:currentTime - cell.rowModel.startTime];
     
     _currentIndexPath = indexPath;
     
 }
 
-- (NSInteger)searchIndex
+- (NSInteger)searchIndexWithCurrentTime:(NSTimeInterval)currentTime
 {
+    if (_currentIndexPath) {
+        
+        NSInteger index = _currentIndexPath.row;
+        KCLyricRowModel *rowModel = _lyricModel.rowModels[index];
+        if (rowModel.startTime <= currentTime && rowModel.endTime >= currentTime) {
+            
+            return index;
+            
+        }
+        
+        if (index + 1 < _lyricModel.rowModels.count) {
+            
+            KCLyricRowModel *rowModel = _lyricModel.rowModels[index + 1];
+            
+            if (rowModel.startTime <= currentTime && rowModel.endTime >= currentTime) {
+                
+                return index + 1;
+                
+            }
+            
+        }
+        
+    }
+    
+    
     NSInteger beginIndex = 0;
     NSInteger endIndex = _lyricModel.rowModels.count - 1;
     
@@ -116,15 +151,15 @@
         
         KCLyricRowModel *rowModel = _lyricModel.rowModels[middleIndex];
         
-        if (rowModel.startTime <= _currentTime && rowModel.endTime >= _currentTime) {
+        if (rowModel.startTime <= currentTime && rowModel.endTime >= currentTime) {
             
             return middleIndex;
             
-        }else if (_currentTime < rowModel.startTime) {
+        }else if (currentTime < rowModel.startTime) {
             
             endIndex = middleIndex - 1;
             
-        }else if (_currentTime > rowModel.endTime) {
+        }else if (currentTime > rowModel.endTime) {
             
             beginIndex = middleIndex + 1;
             
@@ -145,18 +180,21 @@
 {
     KCLyricViewCell *cell = [tableView dequeueReusableCellWithIdentifier:KCLyricViewCellReuseID];
     
-    KCLyricRowModel *rowModel = _lyricModel.rowModels[indexPath.row];
+    cell.normalLabel.textColor = _normalTextColor;
+    cell.highlightedLabel.textColor = _highlightedTextColor;
+    cell.normalLabel.font = _textFont;
+    cell.highlightedLabel.font = _textFont;
+    cell.textAlignment = _textAlignment;
     
-    cell.rowModel = rowModel;
+    cell.rowModel = _lyricModel.rowModels[indexPath.row];
     
     if (_currentIndexPath == indexPath) {
         
-        CGFloat progress = (_currentTime - rowModel.startTime) / rowModel.duration;
-        [cell setProgress:progress];
+        [cell setCurrentTime:_currentTime - cell.rowModel.startTime];
         
     }else {
         
-        [cell setProgress:0];
+        [cell reset];
     }
     
     return cell;
@@ -170,11 +208,23 @@
 
 - (void)reloadData
 {
+    _currentIndexPath = nil;
+    
     NSString *lyricContent = [self lyricContent];
     
     _lyricModel = [[KCLyricModel alloc] initWithLyricContent:lyricContent];
     
     [self.tableView reloadData];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    _dragging = YES;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    _dragging = NO;
 }
 
 @end

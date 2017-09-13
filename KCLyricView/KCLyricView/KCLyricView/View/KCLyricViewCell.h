@@ -17,7 +17,10 @@ extern NSString *const KCLyricViewCellReuseID;
 
 @property (nonatomic,strong) UILabel *normalLabel;
 @property (nonatomic,strong) UILabel *highlightedLabel;
+@property (nonatomic,assign) NSTextAlignment textAlignment;
 
-- (void)setProgress:(CGFloat)progress;
+- (void)setCurrentTime:(NSTimeInterval)currentTime;
+
+- (void)reset;
 
 @end

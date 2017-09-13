@@ -20,6 +20,6 @@
 
 @property (nonatomic,copy) NSString *row;
 
-@property (nonatomic,strong) NSArray <KCLyricRowModel *>*wordModels;
+@property (nonatomic,strong) NSArray <KCLyricWordModel *>*wordModels;
 
 @end

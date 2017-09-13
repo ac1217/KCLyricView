@@ -23,7 +23,8 @@
     
     self.lyricView = [[KCLyricView alloc] init];
     self.lyricView.dataSource = self;
-    self.lyricView.frame = CGRectMake(50, 200, 300, 150);
+    self.lyricView.frame = CGRectMake(50, 200, 100, 90);
+//    self.lyricView.scrollAnimation = NO;
     [self.view addSubview:self.lyricView];
     
     [self.lyricView reloadData];
@@ -48,12 +49,6 @@
     return content;
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    
-    self.lyricView.currentTime = arc4random_uniform(100);
-    
-}
 
 
 - (void)didReceiveMemoryWarning {
@@ -64,7 +59,7 @@
 #pragma mark -KCLyricViewDataSource
 - (NSInteger)numberOfRowsInLyricView:(KCLyricView *)lyricView
 {
-    return 5;
+    return 3;
 }
 
 
