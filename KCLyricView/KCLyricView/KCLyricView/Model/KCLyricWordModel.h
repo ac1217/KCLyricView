@@ -10,8 +10,6 @@
 
 @interface KCLyricWordModel : NSObject
 
-- (instancetype)initWithWordContent:(NSString *)wordContent;
-
 @property (nonatomic,assign) NSTimeInterval startTime;
 @property (nonatomic,assign) NSTimeInterval duration;
 

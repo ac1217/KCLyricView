@@ -156,7 +156,6 @@
     
     NSInteger index = [self searchIndexWithCurrentTime:currentTime];
     
-//    NSLog(@"%zd", index);
     if (index < 0) {
         
         return;
@@ -166,9 +165,18 @@
     
     CGFloat progress = (currentTime - wordModel.startTime) / wordModel.duration;
     
-    NSRange range = [_rowModel.row rangeOfString:wordModel.word];
+    if (progress < 0) {
+        progress = 0;
+    }else if (progress > 1) {
+        progress = 1;
+    }
     
-    NSString *string = [_rowModel.row substringToIndex:range.location];
+    NSMutableString *string = [NSMutableString string];
+    for (int i = 0; i < index; i++) {
+        
+        KCLyricWordModel *wordModel = _rowModel.wordModels[i];
+        [string appendString:wordModel.word];
+    }
     
     CGFloat width = [string sizeWithAttributes:@{NSFontAttributeName : self.normalLabel.font}].width + [wordModel.word sizeWithAttributes:@{NSFontAttributeName : self.normalLabel.font}].width * progress;
     
@@ -212,15 +220,14 @@
         
         KCLyricWordModel *wordModel = _rowModel.wordModels[middleIndex];
         
-        if (wordModel.startTime <= currentTime && wordModel.endTime >= currentTime) {
-            
+        if ((NSInteger)(wordModel.startTime * 1000) <= (NSInteger)(currentTime * 1000) && (NSInteger)(wordModel.endTime * 1000) >= (NSInteger)(currentTime * 1000)) {
             return middleIndex;
             
-        }else if (currentTime < wordModel.startTime) {
+        }else if ((NSInteger)(currentTime * 1000) < (NSInteger)(wordModel.startTime * 1000)) {
             
             endIndex = middleIndex - 1;
             
-        }else if (currentTime > wordModel.endTime) {
+        }else if ((NSInteger)(currentTime * 1000) > (NSInteger)(wordModel.endTime * 1000)) {
             
             beginIndex = middleIndex + 1;
             
@@ -228,7 +235,7 @@
         
     }
     
-    return -1;
+    return middleIndex;
 }
 
 @end

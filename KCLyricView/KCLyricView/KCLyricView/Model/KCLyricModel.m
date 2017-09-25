@@ -10,34 +10,6 @@
 
 @implementation KCLyricModel
 
-- (instancetype)initWithLyricContent:(NSString *)lyricContent
-{
-    if (self = [super init]) {
-        
-        NSArray *rowArray = [lyricContent componentsSeparatedByString:@"\n\n"];
-        
-        NSArray *headerArray = [rowArray subarrayWithRange:NSMakeRange(0, 11)];
-        
-        for (NSString *header in headerArray) {
-            
-             NSArray *headerKeyValueArray = [[header substringWithRange:NSMakeRange(1, header.length - 2)] componentsSeparatedByString:@":"];
-            
-            [self setValue:headerKeyValueArray.lastObject forKey:headerKeyValueArray.firstObject];
-            
-        }
-        
-        NSArray *bodyArray = [rowArray subarrayWithRange:NSMakeRange(11, rowArray.count - 11)];
-        NSMutableArray *rowModels = @[].mutableCopy;
-        for (NSString *rowContent in bodyArray) {
-            KCLyricRowModel *rowModel = [[KCLyricRowModel alloc] initWithRowContent:rowContent];
-            [rowModels addObject:rowModel];
-        }
-        self.rowModels = rowModels;
-        
-        
-    }
-    return self;
-}
 
 - (void)setLanguage:(NSString *)language
 {

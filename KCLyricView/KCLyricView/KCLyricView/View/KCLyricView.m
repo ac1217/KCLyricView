@@ -8,6 +8,7 @@
 
 #import "KCLyricView.h"
 #import "KCLyricViewCell.h"
+#import "KCLyricTool.h"
 
 @interface KCLyricView ()<UITableViewDataSource, UITableViewDelegate> {
     
@@ -43,7 +44,12 @@
 - (NSInteger)numberOfRows
 {
     if ([_dataSource respondsToSelector:@selector(numberOfRowsInLyricView:)]) {
-        return [_dataSource numberOfRowsInLyricView:self];
+        
+        NSInteger numberOfRows = [_dataSource numberOfRowsInLyricView:self];
+        
+        NSAssert(numberOfRows > 0, @"numberOfRows 必须大于0");
+        
+        return numberOfRows;
     }
     return 3;
 }
@@ -72,6 +78,8 @@
     [super layoutSubviews];
     
     self.tableView.frame = self.bounds;
+    CGFloat insetV = (self.tableView.bounds.size.height - self.tableView.bounds.size.height / self.numberOfRows) * 0.5;
+    self.tableView.contentInset = UIEdgeInsetsMake(insetV, 0, insetV, 0);
 }
 
 - (void)setCurrentTime:(NSTimeInterval)currentTime
@@ -103,19 +111,22 @@
     
     KCLyricViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
-    [cell setCurrentTime:currentTime - cell.rowModel.startTime];
+    [cell setCurrentTime:currentTime];
     
     _currentIndexPath = indexPath;
     
+  
 }
 
 - (NSInteger)searchIndexWithCurrentTime:(NSTimeInterval)currentTime
 {
+    
     if (_currentIndexPath) {
         
         NSInteger index = _currentIndexPath.row;
         KCLyricRowModel *rowModel = _lyricModel.rowModels[index];
-        if (rowModel.startTime <= currentTime && rowModel.endTime >= currentTime) {
+        
+        if ((NSInteger)(rowModel.startTime * 1000) <= (NSInteger)(currentTime * 1000) && (NSInteger)(rowModel.endTime * 1000) >= (NSInteger)(currentTime * 1000)) {
             
             return index;
             
@@ -125,7 +136,7 @@
             
             KCLyricRowModel *rowModel = _lyricModel.rowModels[index + 1];
             
-            if (rowModel.startTime <= currentTime && rowModel.endTime >= currentTime) {
+            if ((NSInteger)(rowModel.startTime * 1000) <= (NSInteger)(currentTime * 1000) && (NSInteger)(rowModel.endTime * 1000) >= (NSInteger)(currentTime * 1000)) {
                 
                 return index + 1;
                 
@@ -151,15 +162,15 @@
         
         KCLyricRowModel *rowModel = _lyricModel.rowModels[middleIndex];
         
-        if (rowModel.startTime <= currentTime && rowModel.endTime >= currentTime) {
+        if ((NSInteger)(rowModel.startTime * 1000) <= (NSInteger)(currentTime * 1000) && (NSInteger)(rowModel.endTime * 1000) >= (NSInteger)(currentTime * 1000)) {
             
             return middleIndex;
             
-        }else if (currentTime < rowModel.startTime) {
+        }else if ((NSInteger)(currentTime * 1000) < (NSInteger)(rowModel.startTime * 1000)) {
             
             endIndex = middleIndex - 1;
             
-        }else if (currentTime > rowModel.endTime) {
+        }else if ((NSInteger)(currentTime * 1000) > (NSInteger)(rowModel.endTime * 1000)) {
             
             beginIndex = middleIndex + 1;
             
@@ -167,7 +178,19 @@
         
     }
     
-    return -1;
+    if (middleIndex >= 0) {
+        
+        KCLyricRowModel *rowModel = _lyricModel.rowModels[middleIndex];
+        
+        if (currentTime * 1000 < rowModel.startTime * 1000) {
+            
+            return middleIndex - 1;
+        }
+        
+    }
+    
+    
+    return middleIndex;
 }
 
 #pragma mark -UITableViewDataSource
@@ -185,12 +208,16 @@
     cell.normalLabel.font = _textFont;
     cell.highlightedLabel.font = _textFont;
     cell.textAlignment = _textAlignment;
+    cell.normalLabel.shadowColor = _textShadowColor;
+    cell.normalLabel.shadowOffset = _textShadowOffset;
+    cell.highlightedLabel.shadowColor = _textShadowColor;
+    cell.highlightedLabel.shadowOffset = _textShadowOffset;
     
     cell.rowModel = _lyricModel.rowModels[indexPath.row];
     
     if (_currentIndexPath == indexPath) {
         
-        [cell setCurrentTime:_currentTime - cell.rowModel.startTime];
+        [cell setCurrentTime:_currentTime];
         
     }else {
         
@@ -205,16 +232,26 @@
     return tableView.frame.size.height / self.numberOfRows;
 }
 
-
 - (void)reloadData
+{
+    [self reloadData:nil];
+}
+
+- (void)reloadData:(void(^)())completion
 {
     _currentIndexPath = nil;
     
     NSString *lyricContent = [self lyricContent];
     
-    _lyricModel = [[KCLyricModel alloc] initWithLyricContent:lyricContent];
+    [KCLyricTool lyricModelWithKRC:lyricContent completion:^(KCLyricModel *lyricModel) {
+        
+        _lyricModel = lyricModel;
+        [self.tableView reloadData];
+        
+        !completion ? : completion();
+    }];
     
-    [self.tableView reloadData];
+    
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -222,9 +259,26 @@
     _dragging = YES;
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     _dragging = NO;
 }
+
+/*
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    CGFloat contentOffsetCenterY = scrollView.contentOffset.y + scrollView.frame.size.height * 0.5;
+    
+    NSArray *visibleCells = [self.tableView visibleCells];
+    
+    for (KCLyricViewCell *cell in visibleCells) {
+        
+        CGFloat alpha = fabs(cell.center.y - contentOffsetCenterY) / (scrollView.frame.size.height * 0.5);
+        cell.alpha = (1 - alpha) * 2;
+        
+    }
+    
+}*/
 
 @end

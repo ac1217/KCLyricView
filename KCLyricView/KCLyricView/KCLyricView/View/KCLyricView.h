@@ -19,6 +19,7 @@
 @end
 
 @interface KCLyricView : UIView
+
 @property (nonatomic,strong, readonly) KCLyricModel *lyricModel;
 
 @property (nonatomic,assign) NSTimeInterval currentTime;
@@ -29,10 +30,14 @@
 @property (nonatomic,strong) UIColor *highlightedTextColor;
 @property (nonatomic,strong) UIFont *textFont;
 
+@property (nonatomic,strong) UIColor *textShadowColor;
+@property (nonatomic,assign) CGSize textShadowOffset;
+
 @property (nonatomic,assign) NSTextAlignment textAlignment;
 
 @property (nonatomic,assign) BOOL scrollAnimation;
 
 - (void)reloadData;
+- (void)reloadData:(void(^)())completion;
 
 @end

@@ -11,8 +11,6 @@
 
 @interface KCLyricRowModel : NSObject
 
-- (instancetype)initWithRowContent:(NSString *)rowContent;
-
 @property (nonatomic,assign) NSTimeInterval startTime;
 @property (nonatomic,assign) NSTimeInterval duration;
 

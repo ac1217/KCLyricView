@@ -10,12 +10,6 @@
 
 #import "KCLyricRowModel.h"
 
-typedef enum : NSUInteger {
-    KCLyricTypeKRC,
-    KCLyricTypeLRC
-} KCLyricType;
-
-
 /*
  "[id:$00000000]",
  "[ar:\U859b\U4e4b\U8c26]",
@@ -32,8 +26,6 @@ typedef enum : NSUInteger {
 
 
 @interface KCLyricModel : NSObject
-
-- (instancetype)initWithLyricContent:(NSString *)lyricContent;
 
 @property (nonatomic,copy) NSString *lyricID;
 @property (nonatomic,copy) NSString *ti;
